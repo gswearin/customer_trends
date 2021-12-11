@@ -7,6 +7,71 @@
 	</head>
 	<body>
 		<h1> <a href = 'index.html'> Customer Trends and Purchasing Habits </a> | <a href = 'about.html'> About </a> | Documentation </h1>
-		<p>This is the documentation page</p>
+		<p>[Insert the violin plot stuff here]</p>
+		<p>The scatterplot tool was implemented into the visualization mainly to add an easy way for users to directly view relationships between variables rather than experiment with filters.
+		   A major challenge with even setting up the scatterplot was integrating D3 code with Power BI.
+		   This was done to increase flexibility in the design of the scatterplot and add features that might not be possible with Power BI alone.
+		   To add Power BI code, a Microsoft app by DataScenarios (2021) was imported into Power BI as a custom visual.
+		   From here, the visual provided an option to add D3 code.
+		   Example code Mehta (2018) was used as a reference to know how implementing the D3 code in Power BI varied from implementing D3 on an HTML page.
+		   For example, elements such as '#chart' or variables such as 'width' and 'height' were built into the tool.</p>
+		<p>Overall, we found the D3 tool to be not very well documented, and it had little online support.
+		   Debugging often involved re-implementing my code on a standard HTML page and finding the errors.
+		   It was made even more difficult by the fact that the version of JavScript used by the tool seemed to be an old version, so I would encounter problems I had not previously encountered.</p>
+		<p>Creating the basic scatterplot was relatively straightforward once we became familiar with the D3 tool.
+		   We were already familiar with how to create scatterplots from the first project.
+		   My first basic test with the tool was a simple plot of two of the variables.</p>
+		<img width = '50%' height '50%' src = 'proto1.png'>
+		<p style = 'font-size: 14px;'>Initial scatterplot of two variables</p>
+		<p style = 'font-size: 22px;'>A problem with this preliminary scatterplot was that many points were very densely packed together.
+		   Furthermore, we were planning on making the points larger to be more user-friendly for hover-over capabilities, which would make them appear even more cluttered.
+		   For these reasons, we added a great degree of transparency to the points, so that the user could see how dense points were in a region based on how dark the region was.
+		<img width = '50%' height '50%' src = 'proto3.png'>
+		<p style = 'font-size: 14px;'>Denser areas are more interpretable in the image to the left</p>
+		<p style = 'font-size: 22px;'>Next, details were added to the scatterplots such as grid lines and tick marks with number labels.
+		   This is especially important with a visual like this, where the scale varies widely from variable to variable.
+		   Hovering capabailities were added as well.
+		   If the user hovers over a point, they are able to see the X and Y values of that point.
+		   The user may want to see exactly where the point falls on the graph.
+		   Furthermore, the customer IDs of the points are shown.
+		   Customer IDs are not descriptively useful, but they help the user follow points of interest, such as outliers, as they change views.
+		   Holtz (2018) was lightly referenced for hovering interactions, but we found that example to be a little non-responsive, and we quickly figured out how I would go about making the functionality.</p>
+		<p>The main feature that we sought to "showcase" in this visual was the regression line/curve feature.
+		   Such a feature was important for our analysis, as we found that some of the variables had non-linear relationships, and this visual helped us seek out these pairs more easily.
+		   This was figured out on our own, although Sagwan (2018) was referenced for regression coefficient formulas.
+		   Our method of implementing regression functions was by generating the coefficients for the regression function, generating a uniform distribution of X values, and then generating Y values based on the coefficients and X values.
+		   If we generated enough X values, plotting these points would give the appearance of a line or curve.</p>
+		<img width = '30%' height '30%' src = 'proto4.png'>
+		<p style = 'font-size: 14px;'>The blue circles are generated to follow the regression function. Circles would be shrunk down and more densely packed to appear as a line or curve.</p>
+		<p style = 'font-size: 22px;'>The colors chosen for the data points and regression curve are red and blue, respectively.
+		   These are two simple, contrasting colors that most color-blind people can distinguish.
+		   We thought that the blue regression curve overlaying the red points was easier on the eyes than vice versa.</p>
+		<p>Another challenge was having the option for the regression function to be non-linear.
+		   To achieve this, data was transformed, then fitted on a linear regression line, then transformed back.
+		   In addition, we wanted to give the user the option to transform the X and Y scales visually.
+		   This might be useful for the user to scale down very large variables such as income.
+		   A major challenge was getting this to function properly along with the regression functions.
+		</p>
+		<p>The last challenge was creating an interface that would allow the user to change variables, axis transformations, and the regression transformation.
+		   We thought about using buttons for all of these features, but we also felt that there would be too many buttons if we did this.
+		   We thought about giving the user arrows to scroll through variables.</p>
+		<img width = '30%' height '30%' src = 'proto3.png'>
+		<p style = 'font-size: 14px;'>One of our ideas for giving the user choice of variable to display</p>
+		<p style = 'font-size: 22px;'> In the end we decided on using buttons, as arrows would be a small region to click on and would not let the user see all their options at once.
+		   We we able to make the buttons reasonably large and spread out. </p>
+		<img width = '30%' height '30%' src = 'proto5.png'>
+		<p style = 'font-size: 14px;'>Final visualization</p>
+		<p style = 'font-size: 22px;'> In the end, from the scatterplot we found that many "products purchased" variables, such as fish purchased, wine purchased, and meat purchased, had an exponential relationship with income.
+		   This meant that higher-income customers were buying much more of these products than lower-income customers.
+		   We also found pairs we expected to have a relationship to have no relationship, such as age and wine, and income and recency.</p>
+		<p>Overall we think that our Power BI visual allowed us to gain insights into the different customer variables as we had hoped, and the addition of the scatterplot enabled us to make further insights on statistical relationships between variables.</p>
+		<hr>
+		<p style = 'font-size: 18px;'><b>References</b></p>
+		<p style = 'font-size: 16px;'>
+		DataScenarios (2021). D3.js Visual - create your own custom visual. Retrieved Nov 16, 2021, from https://appsource.microsoft.com/en-us/product/power-bi-visuals/wa104381354?tab=overview.<br>
+		Mehta, Siddharth (2018). How to render D3.js custom charts in Power BI Desktop. Retrieved Nov 16, 2021, from https://www.mssqltips.com/sqlservertip/5273/how-to-render-d3js-custom-charts-in-power-bi-desktop/.<br>
+		Holtz, Yan (2018). Scatterplot with tooltip in d3.js. Retrieved Nov 23, 2021, from https://www.d3-graph-gallery.com/graph/scatter_tooltip.html.<br>
+		Sagwan, Shashi (2018). Linear Regression by hand. Retrieved Nov 18, 2021, from https://medium.com/@shashis890/linear-regression-by-hand-b2d0369adba7.
+		</p>
 	</body>
 </html>
