@@ -183,8 +183,3 @@ pbi.dsv(function(i) {
     d3.select('#regtBLo').attr('fill', 'darkblue');
 
 	});
-
-//work out how reg trans and axis trans relate, make tick text follow tr
-//add text that says 'x' vs. 'y'
-
-//maybe make stuff scale correctly
