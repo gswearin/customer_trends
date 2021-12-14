@@ -1,138 +1,247 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = 'en'>
 	<head>
-		<meta charset = "UTF-8">
-		<link rel = "stylesheet" href = "style.css">
-		<script src = "https://d3js.org/d3.v3.min.js"></script>
-		<title>Cholera Visualization</title>
+		<meta charset = 'UTF-8'>
+		<link rel = 'stylesheet' href = 'style.css'>
+		<title>Customer Trends and Purchasing Habits</title>
 	</head>
 	<body>
-		<h1> <a href = 'index.html'> Cholera Outbreak Visualization </a> | <a href = 'about.html'> About </a> | Documentation </h1>
-		<br>
-		<br>
+		<h1> <a href = 'index.html'> Customer Trends and Purchasing Habits </a> | <a href = 'about.html'> About </a> | Documentation </h1>
+		<p>Marketing plays a pivotal role in improving the revenue for companies, and a key aspect of advertising is targeting the ads to individuals who are most likely to be interested in a product.
+		   Thus, understanding customer habits is critical to the success of businesses. This is why we decided to do our project on exploring patterns in customer behavior and purchasing habits.
+		   Patel (2020) was a suitable dataset for this problem due to containing a large number of descriptive attributes for over 2000 customers.</p>
+		<p>We sought to answer the following questions:</p>
+			<b><p style = 'font-size: 20px;'>Children and Teenagers</p></b>
+			<ul>
+			<li>How do # of Children and # of Teenagers impact purchasing behavior?
+			<ul><li>Are there differences between the influence of # of Children and # of Teenagers on amount of wine purchased?</li></ul>
+			<ul><li>Are there differences between the influence of # of Children and # of Teenagers on days since last purchase?</li></ul>
+			<ul><li>Are there differences between the influence of # of Children and # of Teenagers on where a customer chooses to make purchases (Web, Catalog, Store)?</li></ul>
+			</ul>
+			<b><p style = 'font-size: 20px;'>Income</p></b>
+			<ul>
+			<li>How does income impact purchasing behavior?</li>
+			<ul><li>How does income influence the amount of wine purchased?</li></ul>
+			<ul><li>How does income influence the days since last purchase?</li></ul>
+			<ul><li>How does income influence where a customer chooses to make purchases (Web, Catalog, Store)?</li></ul>
+			<ul><li>How does income influence the amount of complaints a customer makes?</li></ul>
+			</ul>
+			<b><p style = 'font-size: 20px;'>Age</p></b>
+			<ul>
+			<li>How does age impact purchasing behavior?</li>
+			<ul><li>How does age influence the amount of wine purchased?</li></ul>
+			<ul><li>How does age influence the days since last purchase?</li></ul>
+			<ul><li>How does age influence where a customer chooses to make purchases (Web, Catalog, Store)?</li></ul>
+			<ul><li>How does age influence the amount of complaints a customer makes?</li></ul>
+			</ul>
+		<p style = 'font-size: 24px;'><b>Violin Plot Views</b></p>
+		<p>Our project was designed primiarily with Power BI. We chose this partially for its advanced capabilities, and also for the fact that both of our careers are likely to use Power BI at some point.
+		   We initially tried using a bar chart to visualize various variables by kids and by teens.
+		   However, we wanted to find a visual that offered more insight into the distribution of the variables instead of merely average values.
+		   For the income and age visuals, we started with scatter plots, which served well for seeing overall relationships between income, or age, and a variable.
+		   However, we wanted to allow for easier segmentation of the data in a way such that a user could use the visual to answer questions such as
+		   "How much wine does a user purchase each year if they are under 50 years old and earn less than $80,000 per year?"
+		   With a little searching, we came across the Violin Plot Power BI visual (Marsh-Patrick, 2021).
+		   This creates a visual similar to a bell curve, but the visual is vertically oriented and allows variables to be set next to each other for comparison.
+           We found the Power Slider tool in Power BI (TME AG, 2021) that allowed us to create sliding bars which allow the user to define ranges of ages or incomes.
+		   Those bars then update the visuals on that page to reflect the new segment of the data.
+		   We taught ourselves how to use the Violin Plot and Slider tools through trial and error.
+		   </p>
+		<p></p>
+		<p style = 'font-size: 14px;'><b>Initial ideas for visuals (top) vs. violin plots (bottom)</b></p>
+		<img width = '30%' height '30%' src = 'proto6.png'>
+		<p style = 'font-size: 24px;'><b>Violin Plot Views: Design Choices</b></p>
+		<p>For the first two visual tabs, there were several charts placed side by side. Similar charts were given the same color.</p>
+		<p>For example, the first tab shows orange charts for charts involving Kids data and blue charts for charts involving Teens data. Orange and blue are color-blind friendly.</p>
+		<p>In the second tab, the bottom row of charts each pertain to the location where a customer makes a purchase, so they were given the same color.
+		The charts in the top row of the second tab each got a unique color since there were no commonalities between them.
+		The colors in the second tab were selected using Color Brewer (Brewer, 2009) by choosing the following options:  qualitative, four levels (Location, Wine Purchased, Days Since Last Purchase, and Number of Complaints), and colorblind safe.</p>
 		<p>
-		The very first thing I did to get started on this project was try to recreate the map using the line segment .csv file provided. This went hand-in-hand with doing a simple plot of the deaths and pumps on the map.
-		My reasoning in doing this before any planning on the actual visualization was that, because I am still new to D3, and because of the limited time, it would put me at ease to see some sort of code-related progress as early as possible.
-		<br><br>
-		I used a variety of sources to accomplish these first two steps. For displaying the line segments, the most useful resource was Cook (2021), which included an interactive template that I could experiment with.
-		It also allowed me to change the template version to v3 (the version I'm using), which gave me the chance to figure out what functionalities were not v3-compatible and how I needed to change them.
-		<br><br>
-		I also looked at Staroscik (2015) and Holtz (2018b) for reference.
-		<br><br>
-		I eventually became comfortable with how lines work in D3. A problem I ran into was that I was trying to append multiple separated line segments.
-		At first, I used a <i>for</i> loop to append the many different lines. I then looked at Reda (2021b) and learned how to use .enter().append() in place of a <i>for</i> loop.
-		<br><br>
-		Points were easy after plotting the lines. I looked at Holtz (2018a) and Holtz (2018b) for a general idea on how plotting points differ from plotting lines.<br>
-		<img src = 'prelim.png'></img>
+		   The visuals on tab one were oriented so that all the Kids data was in one column and all of the Teens data was in one column.
+		   This allows for easy comparison across the different data categories.
 		</p>
-		<p style = 'font-size: 18px;'>Initial plot of the map, deaths, and pumps</p>
-		<p style = 'font-size: 24px;'>
-		<br>
-		From here I had to start thinking about my design and how to convey the required information on the map (age and gender). Initially I had thought about using color for one of the variables and size for the other.
-		This is the most obvious way I could think of to illustrate two additional variables onto a scatterplot. But there were some problems with this.
-		Size would make the map very cluttered, and it was also counter-intuitive. Age does not have an intuitive relationship with size.
-		<br><br>
-		I decided on using color for both variables. Blue/red would denote gender (male/female respectively) and brightness would denote age.
-		Intuitively, people view blue and red as male and female. I also perceieved lighter colors as looking "older."
-		Implementing this idea was easy after doing some research on the hsl() and rgb() functions of D3.
-		In retrospect, using color for age only and shape for gender might have resulted in a more interpretable plot, especially for color-blind people.
-		<br><br>
-		 I made the pumps gray to stand out from the map while also allowing the main attention to be placed on the deaths.
-		<br><br>
-		My next task was to create a timeline for the deaths. I decided on using a bar chart (more of a histogram in this case) for this.
-		I could have used a connected dot plot, but I figured that bar charts would work better with the "hover-over" functionality, which will be discussed later.
-		I placed the bar chart to the right of the map, so that both could easily be viewed at the same time.
-		Making the bar chart was easy after my experience with appending lines and circles.
-		I would just append rectangles with increasing x-values and y-values based on the appropriate .csv file.
-		I went with orange for the color of the bar chart. I tried to use light colors in general for aesthetics, and I knew I would be using blue, yellow, and red for other parts of the visual.
-		<br><br>
-		I then had to make the bar chart interactive. Hovering over a certain bar should display the points up until that date.
-		This was rather difficult. Schmidt (2019) and Reda (2021a) were good starting points for hovering/linking, but the main challenge was getting the bar chart to display points UNTIL that day, rather than ON that day.
-		I ended up accomplishing this by using nested <i>for</i> loops to create an array <i>deaths_by_day</i>, which grouped the deaths, along with their location and other info, by day.
-		From there, I could systematically name the ids of the timeline bars, and the classes of the death points, such that hovering over a bar would call for points with class numbers up until the bar's id number to be displayed.
-		I later had to make an adjustment such that the user could choose the start date as well. I decided that since hovering was already used to determine the end date, clicking could be used to determine the start date.
-		To make a bar appear as selected, I highlighted it blue, as this is how selected text is normally depicted.<br>
-		<img src = 'select.png'></img>
+		<p style = 'font-size: 24px;'><b>D3 Scatterplot View</b></p>
+		<p>Since we did not end up using the Power BI scatterplot visual, we felt we were lacking a way for the user to directly view relationships between variables rather than experiment with filters.
+		   We ended up deciding on integrating D3 code with Power BI to create a custom scatterplot with increased design flexibility and additional features that would not be possible with Power BI alone.
+		   To connect D3 code with our dashboard, a Microsoft app by DataScenarios (2021) was imported into Power BI as a custom visual.
+		   From here, the visual provided an option to add D3 code.
+		   Example code Mehta (2018) was used as a reference to know how implementing the D3 code in Power BI varied from implementing D3 on an HTML page.
+		   For example, elements such as '#chart' or variables such as 'width' and 'height' were built into the tool.</p>
+		<p>Overall, we found the D3 tool to be not very well documented, and it had little online support.
+		   Debugging often involved re-implementing our code on a standard HTML page and finding the errors.
+		   It was made even more difficult by the fact that the version of JavaScript used by the tool seemed to be an old version, so we would encounter problems we had not previously encountered.</p>
+		<p>Creating the basic scatterplot was relatively straightforward once we became familiar with the D3 tool.
+		   We were already familiar with how to create scatterplots from the first project.
+		   Our first basic test with the tool was a simple plot of two of the variables.</p>
+		<p style = 'font-size: 14px;'><b>Initial scatterplot of two variables</b></p>
+		<img width = '50%' height '50%' src = 'proto1.png'>
+		<p style = 'font-size: 24px;'><b>D3 Scatterplot View: Feature and Design Choices</b></p>
+		<p style = 'font-size: 22px;'>A problem with this preliminary scatterplot was that many points were very densely packed together.
+		   Furthermore, we were planning on making the points larger to be more user-friendly for hover-over capabilities, which would make them appear even more cluttered.
+		   For these reasons, we added a great degree of transparency to the points, so that the user could see how dense points were in a region based on how dark the region was.
 		</p>
-		<p style = 'font-size: 18px;'>Example of selection of certain days on the timeline</p>
-		<p style = 'font-size: 24px;'>
-		<br>
-		From here, I started working on the zooming and panning features of the map. I found some helpful examples on panning, including Pereira (2021), Johnson (2016), Navarro (2015), and d3noob (2021a).
-		Navarro's example was most useful, since it used v3 specifically. But I needed to use all of them to truly get a sense of how the code was functioning and what variations would and would not work.
-		My takeaway was that D3 handled the coordinates relating to the movement, but the event still had to be setup manually to make the object move to those coordinates while being dragged.
-		It was also made more difficult by the fact that I had to be able to drag not a single object, but the entire set of objects lying upon a 'g' element.
-		I used the transform() function to do this.
-		<br><br>
-		For zooming, I found Singh's 2015 example to be helpful.
-		Surprisingly, the challenging part here was combining zooming and panning. Because both used transform() functions, they seemed to override each other.
-		For example, the <i>zoom</i> transform would set the coordinates back to their default values. I ended up having to explicitly set the coordinates to their current values within the <i>zoom</i> transform to work around this.
-		<br><br>
-		The last challenging aspect of the project was clustering. My plan for showing clusters was to display gridlines on the map itself, and then portray the number of deaths in each cell both through a color gradient and a printed number.
-		I did not need any explicit examples since I was familiar with everything I needed at this point.
-		But printing out gridlines in the proper locations as well as the tiles within the cells indicating number involved a lot of nested <i>for</i> loops, fractions, and convoluted math.
-		I was sure to write my code dependent on a parameter (number of clusters) that the user would be able to change as needed.<br>
-		<img src = 'cluster_code.png'></img>
+		<p style = 'font-size: 14px;'><b>Denser areas are more interpretable in the image to the left</b></p>
+		<img width = '50%' height '50%' src = 'proto3.png'>
+		<p style = 'font-size: 22px;'>Next, details were added to the scatterplots such as grid lines and tick marks with number labels.
+		   This is especially important with a visual like this, where the scale varies widely from variable to variable.
+		   Hovering capabailities were added as well.
+		   If the user hovers over a point, they are able to see the X and Y values of that point.
+		   The user may want to see exactly where the point falls on the graph.
+		   Furthermore, the customer IDs of the points are shown.
+		   Customer IDs are not descriptively useful, but they help the user follow points of interest, such as outliers, as they change views.
+		   Holtz (2018) was lightly referenced for hovering interactions, but we found that example to be a little non-responsive, and we quickly figured out how we would go about making the functionality.</p>
+		<p>The main feature that we sought to "showcase" in this visual was the regression line/curve feature.
+		   Such a feature was important for our analysis, as we found that some of the variables had non-linear relationships, and this visual helped us seek out these pairs more easily.
+		   This was figured out on our own, although Sagwan (2018) was referenced for regression coefficient formulas.
+		   Our method of implementing regression functions was by generating the coefficients for the regression function, generating a uniform distribution of X values, and then generating Y values based on the coefficients and X values.
+		   If we generated enough X values, plotting these points would give the appearance of a line or curve.</p>
+		<p style = 'font-size: 14px;'><b>The blue circles are generated to follow the regression function. Circles would be shrunk down and more densely packed to appear as a line or curve.</b></p>
+		<img width = '30%' height '30%' src = 'proto4.png'>
+		<p style = 'font-size: 22px;'>The colors chosen for the data points and regression curve are red and blue, respectively.
+		   These are two simple, contrasting colors that most color-blind people can distinguish.
+		   We thought that the blue regression curve overlaying the red points was easier on the eyes than vice versa.</p>
+		<p>Another challenge was having the option for the regression function to be non-linear.
+		   To achieve this, data was transformed, then fitted on a linear regression line, then transformed back.
+		   In addition, we wanted to give the user the option to transform the X and Y scales visually.
+		   This might be useful for the user to scale down very large variables such as income.
+		   A major challenge was getting this to function properly along with the regression functions.
 		</p>
-		<p style = 'font-size: 18px;'>Some of the code for the clustering; this code determines if points are within each cluster</p>
-		<p style = 'font-size: 24px;'>
-		<br>
-		My decision to place the grid on the map gave a sense of how the grid cells aligned with the deaths on the map.
-		I was sure to give the grid a small amount of transparency such that the map was visible, but not so much so that the viewer would be overwhelmed.
-		<br><br>
-		Last, I had to show the general distributions of age and gender. I figured that bar charts would be a perfectly good way to illustrate this.
-		This part was very easy overall and did not take too much time considering what I had done earlier.
-		I needed side-by-side bars to show how the general age dsitribution compared with the age distribution of the victims.
-		I chose yellow and purple as contrasting colors for the age distributions, and I again chose blue and red to represent male and female.
-		<br><br>
-		The final step was to properly label everything.
-		Labeling street maps in their proper locations was a bit tricky, but I was able to speed up the process by first logging where I clicked my mouse, and then clicking on the locations of the streets for their approximate coordinates.
-		The last online example I needed to reference was for rotating text (d3noob, 2021b). This was necessary for the positioning of some of the labels.
-		<br><br>
-		To show the work house and brewery on the map, I used yellow and purple squares. I wanted to choose two contrasting colors that would not clash with the blue and red points.
-		<br><br>
-		From here, I just polished up some small details of my design and checked for color-blindness issues with Color Oracle.
-		<br><br>
-		I was able to infer a great deal about the nature of this outbreak based on the visualization.
-		Most of the deaths occured around the Broad Street pump, as John Snow found (Rogers, 2013). None of the other pumps had a high concentration of deaths around them.<br>
-		<img src = 'pump_cluster.png'></img>
+		<p>The last challenge was creating an interface that would allow the user to change variables, axis transformations, and the regression transformation.
+		   We were deciding between using buttons to view the variables and using scroll arrows by the variable names as shown below.</p>
+		<p style = 'font-size: 14px;'><b>Scroll arrows for allowing the user to select different variables</b></p>
+		<img width = '30%' height '30%' src = 'proto2.png'>
+		<p style = 'font-size: 22px;'> In the end we decided on using buttons, as their size would make them convenient to click on and all the options could be seen at once.</p>
+		<p style = 'font-size: 14px;'><b>Final scatterplot visualization</b></p>
+		<img width = '30%' height '30%' src = 'proto5.png'>
+		<p style = 'font-size: 22px;'>In the end, from the scatterplot we found that many "products purchased" variables, such as fish purchased, wine purchased, and meat purchased, had an exponential relationship with income.
+		   This meant that higher-income customers were buying much more of these products than lower-income customers.
+		   We also found pairs which surprisingly had no relationship, such as age and wine, and income and recency.</p>
+		<p style = 'font-size: 24px;'><b>Conclusions</b></p>
+		<p>Using our visualization, we answered our research questions as shown below:</p>
+	    <b><p style = 'font-size: 20px;'>Children and Teenagers</p></b>
+		<ul>
+	    <li>How do # of Children and # of Teenagers impact purchasing behavior?
+	    <ul><li>Are there differences between the influence of # of Children and # of Teenagers on amount of wine purchased?</li>
+		<ul><li><i>Violin plots on the first view reveal that Customers with more children tend to pruchase less wine, and customers with more teenagers tend to purchase more wine.</i>
+		<p style = 'font-size: 14px;'><b>More teens correlate to more wine purchased, more children correlate to less wine purchased</b></p>
+		<img width = '30%' height '30%' src = 'con1.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>Are there differences between the influence of # of Children and # of Teenagers on days since last purchase?</li>
+		<ul><li><i>Number of children and teenagers does not seem to have an effect on days since last purchase, as shown by the top violin plots on the first view.</i>
+		<p style = 'font-size: 14px;'><b>Number of children and teenagers is not correlated to days since last purchase</b></p>
+		<img width = '30%' height '30%' src = 'con2.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>Are there differences between the influence of # of Children and # of Teenagers on where a customer chooses to make purchases (Web, Catalog, Store)?</li>
+		<ul><li><i>All around, purchases from customers with more teenagers exceed purchases from customers with more children, but source of purchase is not affected.</i>
+		<p style = 'font-size: 14px;'><b>Overall purchases have slightly higher distributions with more teens but not with more children</b></p>
+		<img width = '30%' height '30%' src = 'con10.png'>
+		</li></ul>
+		</ul>
+		</ul>
+	    <b><p style = 'font-size: 20px;'>Income</p></b>
+		<ul>
+	    <li>How does income impact purchasing behavior?</li>
+	    <ul><li>How does income influence the amount of wine purchased?</li>
+		<ul><li><i>Higher income leads to exponentially more spent on wine as shown by the scatterplot and the best-fit regression curve.</i>
+		<p style = 'font-size: 14px;'><b>Income vs. wine, best explained with exponential curve</b></p>
+		<img width = '30%' height '30%' src = 'con3.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>How does income influence the days since last purchase?</li>
+		<ul><li><i>The scatterplot shows no significant relationship between income and days since last purchase.</i>
+		<p style = 'font-size: 14px;'><b>Income vs. days since last purchase, no clear trend</b></p>
+		<img width = '30%' height '30%' src = 'con4.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>How does income influence where a customer chooses to make purchases (Web, Catalog, Store)?</li>
+		<ul><li><i>Filtering the violin plots on the second view reveals that lower-income customers tend to make more web purchases than catalog purchases, and higher-income customers make more total purchases of all kinds.</i>
+		<p style = 'font-size: 14px;'><b>Sources of purchase from customers who make less than $70,000</b></p>
+		<img width = '30%' height '30%' src = 'con11.png'>
+		<p style = 'font-size: 14px;'><b>Sources of purchase from customers who make greater than $70,000 (smaller proportion of web purchases but greater total purchases overall)</b></p>
+		<img width = '30%' height '30%' src = 'con12.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>How does income influence the amount of complaints a customer makes?</li>
+		<ul><li><i>The number of complaints across the board was very small.</i>
+		<p style = 'font-size: 14px;'><b>Histogram of number of complains per customer</b></p>
+		<img width = '30%' height '30%' src = 'con5.png'>
+		</li></ul>
+		</ul>
+		</ul>
+		<ul>
+	    <li>How does age impact purchasing behavior?</li>
+	    <ul><li>How does age influence the amount of wine purchased?</li>
+		<ul><li><i>There appears to be no correlation between age and wine purchased based on the scaatterplot.</i>
+		<p style = 'font-size: 14px;'><b>Age vs. wine purchased, no clear trend</b></p>
+		<img width = '30%' height '50%' src = 'con8.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>How does age influence the days since last purchase?</li>
+		<ul><li><i>The scatterplot also shows no correlation between age and days since last purchased.</i>
+		<p style = 'font-size: 14px;'><b>Age vs. days since last purchased, no clear trend</b></p>
+		<img width = '30%' height '50%' src = 'con9.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>How does age influence where a customer chooses to make purchases (Web, Catalog, Store)?</li>
+		<ul><li><i>In general, customers tend to prefer purchasing in store over purchasing online regardless of age, as shown by the violin plots on the second view filtered by different age ranges.</i>
+		<p style = 'font-size: 14px;'><b>Sources of purchase from customers born from 1940 to 1965</b></p>
+		<img width = '30%' height '50%' src = 'con7.png'>
+		<p style = 'font-size: 14px;'><b>Sources of purchase from customers born from 1965 to 1995 (Store has highest distribution in both cases)</b></p>
+		<img width = '30%' height '50%' src = 'con6.png'>
+		</li></ul>
+		</ul>
+	    <ul><li>How does age influence the amount of complaints a customer makes?</li>
+		<ul><li><i>Again, the number of complaints across the board was very small.</i></li></ul>
+		</ul>
+		</ul>
+		<p>Overall we think that our Power BI visual allowed us to gain insights into the different customer variables as we had hoped, and the addition of the scatterplot enabled us to make further insights on statistical relationships between variables.</p>
+		<p style = 'font-size: 24px;'><b>Team Member Contributions</b></p>
+		<p>
+		John Cochran
+		<ul>
+		<li>Found dataset on Kaggle</li>
+		<li>Taught team how to use Power BI</li>
+		<li>Created visuals on first tab</li>
+		<li>Created visuals on second tab</li>
+		<li>Created portion of video covering first and second visuals</li>
+		<li>Wrote portions of Documentation related to first and second tabs</li>
+		<li>Proofread About and Documentation sections</li>
+		<li>Found colorblind-friendly color palette for first and second tabs</li>
+		</ul>
 		</p>
-		<p style = 'font-size: 18px;'>Cluster grid showing a high concentration of points near the Broad Street pump</p>
-		<p style = 'font-size: 24px;'>
-		<br>
-		Additionally, I can conclude that children and elderly people were disproportionately affected, which makes sense considering that these groups generally have weaker immunity.
-		The disease targeted males and females at about the same rate.<br>
-		<img src = 'distributions.png'></img>
+		<p>
+		Garrett Swearingen
+		<ul>
+		<li>Figured out how to integrate D3 with Power BI</li>
+		<li>Set up D3 code</li>
+		<li>Scripted D3 scatterplot</li>
+		<li>Added visual embellishments for visual scatterplot such as transparency, gridlines</li>
+		<li>Added hover-over feature to view point IDs and locations</li>
+		<li>Added regression functions</li>
+		<li>Added transformations to variables and regression functions</li>
+		<li>Embedded Power BI dasbhoard to HTML page</li>
+		<li>Hosted HTML page on GitHub</li>
+		<li>Set up About and Documentation pages</li>
+		</ul>
 		</p>
-		<p style = 'font-size: 18px;')>Age and gender distributions</p>
-		<p style = 'font-size: 24px;'>
-		<br>
-		Last, the outbreak exploded at very end of August.<br>
-		<img src = 'spike.png'></img>
-		</p>
-		<p style = 'font-size: 18px;'>The death count started increasing rapidly within the red box</p>
-		<p style = 'font-size: 24px;'>
-		<br>
-		This project was overall very difficult but a learning experience. I'm happy with how it turned out and I'm proud of myself for learning D3 in such a short time frame.
-		<br><br>
-		</p>
-		<p style = 'font-size: 24px;'><b>Video Demonstration</b></p><br>
-		<iframe width = '960' height = '540' src = 'https://www.youtube.com/embed/6wmG1RvhADw'></iframe><br>
 		<hr>
-		<p style = 'font-size: 18px; margin-right: 50px;'>
-		<b>References</b><br><br>
-		Cook, Peter (2021). Shapes. Retrieved Sep 23, 2021, from https://www.d3indepth.com/shapes/<br>
-		d3noob (2021a). d3.drag with grouped elements in v4. Retrieved Oct 3, 2021, from https://bl.ocks.org/d3noob/204d08d309d2b2903e12554b0aef6a4d.<br>
-		d3noob (2021b). Interactive text rotation with d3.js. Retrieved Oct 9, 2021, from https://bl.ocks.org/d3noob/10633421/88b8cf3413031243f28a2d4a4d1969e29564c42a.<br>
-		Holtz, Yan (2018a). Basic scatterplot in d3.js. Retrieved Sep 25, 2021, from https://www.d3-graph-gallery.com/graph/scatter_basic.html.<br>
-		Holtz, Yan (2018b). Building shapes in d3.js. Retrieved Sep 25, 2021, from https://www.d3-graph-gallery.com/graph/shape.html.<br>
-		Johnson, Ian (2016). D3 behavior.drag example. Retrieved Oct 3, 2021, from http://bl.ocks.org/enjalot/1378144.<br>
-		Navarro, Pablo (2015). Example of Drag Behavior in D3. Retrieved Oct 3, 2021, from https://bl.ocks.org/pnavarrc/5190856.<br>
-		Pereira, Gérald (2021). D3.js Tutorial: Drag and Drop. Retrieved Oct 3, 2021, from https://octoperf.com/blog/2018/04/18/d3-js-drag-and-drop-tutorial/.<br>
-		Reda, Khairi (2021a). Brushing and Linking. Retrieved Sep 25, 2021, from https://khreda.com/teaching/fall2021/H517/d3-excercises/linking.<br>
-		Reda, Khairi (2021b). Energy production for the US. Retrieved Sep 25, 2021, from https://khreda.com/teaching/fall2021/H517/d3-excercises/energy.html.<br>
-		Rogers, Simon. (2013, March 15). John Snow's data journalism: The cholera map that changed the world. The Guardian. Retrieved October 11, 2021, from https://www.theguardian.com/news/datablog/2013/mar/15/john-snow-cholera-map.<br>
-		Schmidt, KJ (2019). D3.js mouse-over effects for your scatter plot. Retrieved Sep 25, 2021, from https://medium.com/@kj_schmidt/hover-effects-for-your-scatter-plot-447df80ea116.<br>
-		Singh, Sundar (2015). d3 | zoom and panning. Retrieved Oct 3, 2021, from https://bl.ocks.org/eesur/c8ddc916e07af6e0481a.<br>
-		Staroscik, Andrew (2015). Calling a line function on information nested in an array. Retrieved Sep 22, 2021, from https://bl.ocks.org/andrewStaroscik/5232640.<br>
+		<p><a href = 'https://github.com/gswearin/customer_trends/tree/main/source_code'>Source code and Power BI project</a></p>
+		<hr>
+		<p style = 'font-size: 24px;'><b>Video</b></p>
+		<p><iframe width = '960' height = '540' src = 'https://www.youtube.com/embed/sxnheJARgQQ'></iframe></p>
+		<hr>
+		<p style = 'font-size: 24px;'><b>References</b></p>
+		<p style = 'font-size: 16px;'>
+		Brewer, Cynthia (2009). ColorBrewer: Color Advice for Maps. Retrieved Dec 13, 2021 from https://colorbrewer2.org/#.
+		DataScenarios (2021). D3.js Visual - create your own custom visual. Retrieved Nov 16, 2021, from https://appsource.microsoft.com/en-us/product/power-bi-visuals/wa104381354?tab=overview.<br>
+		Holtz, Yan (2018). Scatterplot with tooltip in d3.js. Retrieved Nov 23, 2021, from https://www.d3-graph-gallery.com/graph/scatter_tooltip.html.<br>
+		Marsh-Patrick, Daniel (2021). Violin Plot. Accessed Nov 1, 2021 from https://appsource.microsoft.com/en-us/product/power-bi-visuals/WA104381947?tab=DetailsAndSupport.<br>
+		Mehta, Siddharth (2018). How to render D3.js custom charts in Power BI Desktop. Retrieved Nov 16, 2021, from https://www.mssqltips.com/sqlservertip/5273/how-to-render-d3js-custom-charts-in-power-bi-desktop/.<br>
+		Patel, Akash (2021). Customer Personality Analysis. Retrieved October 20, 2021, from https://www.kaggle.com/imakash3011/customer-personality-analysis.<br>
+		Sagwan, Shashi (2018). Linear Regression by hand. Retrieved Nov 18, 2021, from https://medium.com/@shashis890/linear-regression-by-hand-b2d0369adba7.<br>
+		TME AG (2021). Power Slider by TME AG. Accessed Oct 18, 2021 from https://appsource.microsoft.com/en-us/product/power-bi-visuals/WA200002880?tab=DetailsAndSupport.
+		</p>
 	</body>
 </html>
